@@ -71,7 +71,7 @@ public class navigationServlet extends HttpServlet
 		{
 			try 
 			{
-				// Get the petId, pass it to the search function, then send the results to edit-item.jsp in the form of a attribute.
+				// Get the id, pass it to the search function, then send the results to edit-recipe.jsp in the form of a attribute.
 				Integer tempID = Integer.parseInt(request.getParameter("recipeID"));
 				RecipeInfo itemToEdit = rh.searchForRecipeByID(tempID);
 				request.setAttribute("recipeToEdit", itemToEdit);

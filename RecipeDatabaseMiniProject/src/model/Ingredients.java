@@ -18,7 +18,7 @@ public class Ingredients
 	// Initial values.
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="RECIPE_ID")
-	private int recipeID;
+	private RecipeInfo recipeID;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="INGREDIENT_ID")
@@ -36,7 +36,7 @@ public class Ingredients
 		super();
 	}
 	// Constructor with all values.
-	public Ingredients(int recipeID, int ingredientID, String ingredientName, String ingredientQuantity, int ingredientSortNumber)
+	public Ingredients(RecipeInfo recipeID, int ingredientID, String ingredientName, String ingredientQuantity, int ingredientSortNumber)
 	{
 		super();
 		this.recipeID = recipeID;
@@ -54,7 +54,7 @@ public class Ingredients
 			this.ingredientSortNumber = ingredientSortNumber;
 		}
 	// Constructor without ingredient ID.
-	public Ingredients(int recipeID, String ingredientName, String ingredientQuantity, int ingredientSortNumber)
+	public Ingredients(RecipeInfo recipeID, String ingredientName, String ingredientQuantity, int ingredientSortNumber)
 	{
 		super();
 		this.recipeID = recipeID;
@@ -64,11 +64,11 @@ public class Ingredients
 	}
 	
 	// Getters and setters.
-	public int getRecipeID() 
+	public RecipeInfo getRecipeID() 
 	{
 		return recipeID;
 	}
-	public void setRecipeID(int recipeID) 
+	public void setRecipeID(RecipeInfo recipeID) 
 	{
 		this.recipeID = recipeID;
 	}

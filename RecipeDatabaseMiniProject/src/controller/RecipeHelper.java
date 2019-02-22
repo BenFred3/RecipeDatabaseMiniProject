@@ -4,13 +4,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-
 import model.RecipeInfo;
 
 public class RecipeHelper 
 {
 	// Relate this class to the persistence.xml file.
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Recipe");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Recipes");
 		
 	// This method inserts a recipe into the database.
 	public void insertRecipe(RecipeInfo ri) 
@@ -29,7 +28,7 @@ public class RecipeHelper
 		// Create a EntityManager, pass a SQL command and get the results, return the results.
 		EntityManager em = emfactory.createEntityManager();
 		@SuppressWarnings("unchecked") // Make the warning disappear from the line below.
-		List<RecipeInfo> allRecipes = em.createQuery("SELECT i FROM recipes i").getResultList();
+		List<RecipeInfo> allRecipes = em.createQuery("SELECT i FROM RecipeInfo i").getResultList();
 		return allRecipes;
 	}
 		
@@ -39,8 +38,8 @@ public class RecipeHelper
 		// Create a EntityManager, start a transaction, pass a SQL command.
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<RecipeInfo> typedQuery = em.createQuery("select li from recipes li where li.RECIPE_ID = :selectedRecipeID and li.RECIPE_NAME = :selectedRecipeName"
-		+ " and li.RECIPE_TYPE = :selectedRecipeType and li.DATE_ADDED = :selectedDateAdded and li.CALORIES = :selectedCalories and li.PREP_TIME = "
+		TypedQuery<RecipeInfo> typedQuery = em.createQuery("select li from RecipeInfo li where li.recipeID = :selectedRecipeID and li.recipeName = :selectedRecipeName"
+		+ " and li.recipeType = :selectedRecipeType and li.dateAdded = :selectedDateAdded and li.calories = :selectedCalories and li.prepTime = "
 		+ ":selectedPrepTime", RecipeInfo.class);
 				
 		// Substitute parameter with actual data from the toDelete item.

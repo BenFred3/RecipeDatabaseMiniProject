@@ -13,13 +13,23 @@
 			<!-- List out the database for the user and allow them to select an item. -->
 			<c:forEach items="${requestScope.allRecipes}" var="currentRecipe">
 			<tr>
-			 <td><input type="radio" name="recipeID" value="${currentRecipe.recipeID}"></td>
-			 <td>${currentRecipe.recipeName} -</td>
-			 <td>${currentRecipe.recipeType} -</td>
-			 <td>${currentRecipe.dateAdded} -</td>
-			 <td>${currentRecipe.calories} -</td>
-			 <td>${currentRecipe.prepTime}</td>
-			 </tr>
+				<td><input type="radio" name="recipeID" value="${currentRecipe.recipeID}">Recipe ID: ${currentRecipe.recipeID}</td>
+			</tr>
+			<tr>
+			 	<td>&nbsp;&nbsp;&nbsp;&nbsp; Recipe Name: ${currentRecipe.recipeName}</td>
+			</tr>
+			<tr>
+			 	<td>&nbsp;&nbsp;&nbsp;&nbsp; Recipe Type: ${currentRecipe.recipeType}</td>
+			</tr>
+			<tr>
+			 	<td>&nbsp;&nbsp;&nbsp;&nbsp; Date Added: ${currentRecipe.dateAdded}</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp; Calories: ${currentRecipe.calories}</td>
+			</tr>
+			<tr>
+			 	<td>&nbsp;&nbsp;&nbsp;&nbsp; Prep Time: ${currentRecipe.prepTime}</td>
+			</tr>
 			</c:forEach>
 			<!-- Create buttons to allow the user to edit, delete, or go back and add. -->
 		</table>
