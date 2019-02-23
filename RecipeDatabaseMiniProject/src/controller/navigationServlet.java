@@ -73,8 +73,8 @@ public class navigationServlet extends HttpServlet
 			{
 				// Get the id, pass it to the search function, then send the results to edit-recipe.jsp in the form of a attribute.
 				Integer tempID = Integer.parseInt(request.getParameter("recipeID"));
-				RecipeInfo itemToEdit = rh.searchForRecipeByID(tempID);
-				request.setAttribute("recipeToEdit", itemToEdit);
+				RecipeInfo recipeToEdit = rh.searchForRecipeByID(tempID);
+				request.setAttribute("recipeToEdit", recipeToEdit);
 				getServletContext().getRequestDispatcher("/edit-recipe.jsp").forward(request, response);
 			} 
 			catch (NumberFormatException e) 
