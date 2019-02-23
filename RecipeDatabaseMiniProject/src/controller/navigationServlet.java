@@ -1,3 +1,4 @@
+// Servlet that allows the user to navigate through different pages and servlets.
 package controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class navigationServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// Create a PetListHelper object.
+		// Create a RecipeHelper object.
 		RecipeHelper rh = new RecipeHelper();
 		// Get user's response parameter and set it to a string.
 		String act = request.getParameter("doThisToRecipe");
@@ -36,11 +37,11 @@ public class navigationServlet extends HttpServlet
 		// If no button has been selected do this.
 		if (act == null) 
 		{
-			// Return to the viewAllItemsServlet to redisplay the page.
+			// Return to the viewAllRecipesServlet to redisplay the page.
 			getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 		} 
-		// If a button is checked see if it's delete if it is, do this.
-		else if (act.equals("delete")) 
+		//If the string act equals delete do this.
+		else if (act.equals("Delete")) 
 		{
 			// Try and catch statement to avoid errors.
 			try 
@@ -49,7 +50,7 @@ public class navigationServlet extends HttpServlet
 				Integer tempID = Integer.parseInt(request.getParameter("recipeID"));
 				RecipeInfo itemToDelete = rh.searchForRecipeByID(tempID);
 				
-				// Create a ingredientHelper and delete any ingredients associated with the recipe being deleted.
+				// Create a ingredientHelper and delete any ingredients associated with the recipe being deleted. (Potential functionality)
 				// GOES HERE <---------------------------------------------------------------------------------------------------
 				
 				//  then send the results to the delete function.
@@ -66,8 +67,8 @@ public class navigationServlet extends HttpServlet
 				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 			}
 		} 
-		// If a button is checked see if it's edit if it is, do this.
-		else if (act.equals("edit")) 
+		// If the string act equals edit do this.
+		else if (act.equals("Edit")) 
 		{
 			try 
 			{
@@ -83,8 +84,8 @@ public class navigationServlet extends HttpServlet
 				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 			}
 		} 
-		// If a button is checked see if it's add if it is, do this.
-		else if (act.equals("add")) 
+		// If the string act equals add do this.
+		else if (act.equals("Add")) 
 		{
 			// Go to the add-recipe.jsp and pass the request and respone to the jsp.
 			getServletContext().getRequestDispatcher("/add-recipe.jsp").forward(request, response);

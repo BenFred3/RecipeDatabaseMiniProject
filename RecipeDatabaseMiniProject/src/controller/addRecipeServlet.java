@@ -1,3 +1,4 @@
+// Servlet that allows users to add recipes to the database.
 package controller;
 import java.io.IOException;
 import java.time.LocalDate;

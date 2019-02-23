@@ -2,12 +2,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Added CSS to make the web page look pretty. -->
+	<style>
+	body 
+	{
+  		background-color: lightgrey;
+	}
+
+	a 
+	{
+   		background-color: grey;
+  		box-shadow: 0 5px 0 darkgrey;
+  		color: white;
+  		padding: .25em .5em;
+  		position: relative;
+  		text-decoration: none;
+	}
+	a:hover 
+	{
+  		background-color: grey;
+	}
+	a:active 
+	{
+  		box-shadow: none;
+  		top: 5px;
+	}
+	</style>
 	<meta charset="ISO-8859-1">
 	<title>Recipe Database</title>
 </head>
 <body>
+	<!-- Welcome message and explanation for the user. -->
  	<h1> Welcome to the Recipe Database! </h1>
-	<!-- Link to view the pet's database and the vet's database. -->
+ 	<p> This is a database that holds recipes from a MYSQL database. </p>
+ 	<p> Users can view, edit, delete, and add new records in the database. </p>
+ 	<p> Below are some links to get started! </p>
+	<!-- Link to view the recipe's table and the ingredient's table. -->
 	<p><a href = "viewAllRecipesServlet">View All Recipes</a></p>
 	<p><a href = "viewAllIngredientsServlet">View All Ingredients</a></p>
 </body>

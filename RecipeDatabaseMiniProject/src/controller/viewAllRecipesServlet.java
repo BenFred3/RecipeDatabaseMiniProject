@@ -1,3 +1,4 @@
+// Servlet that allows the user to view all the recipes.
 package controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class viewAllRecipesServlet extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// Create a PetListHelper Object.
+		// Create a RecipeHelper Object.
 		RecipeHelper rh = new RecipeHelper();
 		
 		// Get the attribute from the previous servlet.
@@ -39,7 +40,7 @@ public class viewAllRecipesServlet extends HttpServlet
 			request.setAttribute("allRecipes", " ");
 		}
 		
-		// Pass the request and responses to the jsp.
+		// Pass the request and responses to the view-all-recipes.jsp.
 		getServletContext().getRequestDispatcher("/view-all-recipes.jsp").forward(request, response);}
 
 	/**

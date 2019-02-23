@@ -1,3 +1,4 @@
+// Servlet that allows the user to edit recipes in the database.
 package controller;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -35,36 +36,21 @@ public class editRecipeServlet extends HttpServlet
 		// Create seven variables to hold all the requests.
 		String recipeName = request.getParameter("recipeName");
 		String recipeType = request.getParameter("recipeType");
+		String dateAdded = request.getParameter("dateAdded");
 		Integer calories = Integer.parseInt(request.getParameter("calories"));
 		String prepTime = request.getParameter("prepTime");
-		String month = request.getParameter("month");
-		String day = request.getParameter("day");
-		String year = request.getParameter("year");
-		
-		// Create a LocalDate variable.
-		LocalDate ld;
-		// Try to create a local date out of the strings given.
-		try 
-		{
-			ld = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-		}
-		// If it fails set the date to the current date.
-		catch(NumberFormatException ex) 
-		{
-			ld = LocalDate.now();
-		}
 		
 		// Create a integer to hold the recipeID.
 		Integer tempID = Integer.parseInt(request.getParameter("recipeID"));
 		// Get the RecipeInfo object from the id.
 		RecipeInfo recipeToUpdate = rh.searchForRecipeByID(tempID);
-		// Pass the variables from earlier to the recipeHelper.
+		// Pass the variables from earlier and update then recipe.
 		recipeToUpdate.setRecipeName(recipeName);
 		recipeToUpdate.setRecipeType(recipeType);
-		recipeToUpdate.setDateAdded(ld);
+		recipeToUpdate.setDateAdded(LocalDate.parse(dateAdded));
 		recipeToUpdate.setCalories(calories);
 		recipeToUpdate.setPrepTime(prepTime);
-		// Update the item.
+		// Update the recipe in the database.
 		rh.updateRecipe(recipeToUpdate);
 		// Return to the servlet.
 		getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);

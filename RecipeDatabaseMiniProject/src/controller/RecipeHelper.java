@@ -1,3 +1,4 @@
+// A helper class that handles any functions needed with the RecipeInfo entity.
 package controller;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -52,21 +53,13 @@ public class RecipeHelper
 		
 		// Make sure there is only one result.
 		typedQuery.setMaxResults(1);
-
-		// This try-catch statement is to avoid a exception caused by me trying to fix the delete function.
-		try 
-		{
-			// Get the result and save it into a new list item.
-			RecipeInfo result = typedQuery.getSingleResult();
-			// Remove it, commit it, and close the transaction.
-			em.remove(result);
-			em.getTransaction().commit();
-			em.close();
-		}
-		catch (Exception e)
-		{
-			// If there is an exception do nothing.
-		}
+		
+		// Get the result and save it into a new list item.
+		RecipeInfo result = typedQuery.getSingleResult();
+		// Remove it, commit it, and close the transaction.
+		em.remove(result);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	// This method searches the recipe database using a id.
