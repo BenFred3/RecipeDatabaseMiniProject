@@ -14,12 +14,12 @@ public class IngredientsHelper
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Recipes");
 		
 	// This method inserts an Ingredient into the database.
-	public void insertIngredients(Ingredients ri) 
+	public void insertIngredients(Ingredients i) 
 	{
 		// Create a EntityManager, start a transaction, send the new Ingredient information, commit it to the database, close the transaction.
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(ri);
+		em.persist(i);
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -88,7 +88,6 @@ public class IngredientsHelper
 		em.getTransaction().begin();
 		TypedQuery<Ingredients> typedQuery = em.createQuery("SELECT li FROM Ingredients li where li.recipeID = :selectedRecipeID ", Ingredients.class);
 
-		System.out.println();
 		// Substitute parameter with actual data from the toDelete item.
 		typedQuery.setParameter("selectedRecipeID", ri);
 		
