@@ -48,13 +48,13 @@
 		</table>
 		<br />
 		<!-- Create buttons to allow the user to edit, delete, or add. -->
+		<input type = "submit" value = "View Ingredients" name = "doThisToRecipe">
 		<input type = "submit" value = "Edit" name = "doThisToRecipe">
 		<input type = "submit" value = "Delete" name = "doThisToRecipe">
 		<input type = "submit" value = "Add" name = "doThisToRecipe">
 	</form>
 	<br />
 	<!-- Links to go to the ingredients or back to the homepage -->
-	<p><a href = "viewAllIngredientsServlet">View the Ingredients</a></p> <!-- THIS COULD BE CHANGED INTO A INPUT TYPE IN ORDER TO PASS THE RECIPE ID TO INGREDIENTS -->
 	<p><a href ="index.html">Go back to the Homepage</a></p>
 </body>
 </html>
