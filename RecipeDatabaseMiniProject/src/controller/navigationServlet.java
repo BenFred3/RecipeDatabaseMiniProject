@@ -32,13 +32,15 @@ public class navigationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// Create a RecipeHelper object.
 		RecipeHelper rh = new RecipeHelper();
 		IngredientsHelper ih = new IngredientsHelper();
 		// Get user's response parameter and set it to a string.
 		String act = request.getParameter("doThisToRecipe");
-		
+
+		System.out.println("~~~~~NavigationServlet:  act = " + act);
+
 		// If no button has been selected do this.
 		if (act == null) {
 			// Return to the viewAllRecipesServlet to redisplay the page.
@@ -81,18 +83,14 @@ public class navigationServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 			}
 		}
-		// If the string act equals add do this.
-		else if (act.equals("Add")) {
-			// Go to the add-recipe.jsp and pass the request and respone to the jsp.
-			getServletContext().getRequestDispatcher("/add-recipe.jsp").forward(request, response);
-		}
 
 		else if (act.equals("View Ingredients")) {
-			
+
 			try {
 				// Get the id, pass it to the search function, then send the results to
-				// edit-recipe.jsp in the form of a attribute.
+				// view-ingredients.jsp in the form of an attribute.
 				Integer recipeID = Integer.parseInt(request.getParameter("recipeID"));
+				System.out.println("NavigationServlet:ViewIngredients:recipeID = " + recipeID);
 				List<Ingredients> ingredientsToView = ih.searchForIngredientsByRecipeID(recipeID);
 				request.setAttribute("allIngredients", ingredientsToView);
 				getServletContext().getRequestDispatcher("/view-ingredients.jsp").forward(request, response);
@@ -100,7 +98,30 @@ public class navigationServlet extends HttpServlet {
 				// If the user didn't select anything return to the servlet.
 				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 			}
+		} else if (act.equals("Add Ingredient")) {
+			System.out.println("~~~~~~NavigationServlet:AddIngredient");
+			try {
+				// Get the recipeId
+				System.out.println("~~~~~NavigtionServlet:  Add Ingredient:  getting recipeID");
+				Integer recipeIDToView = Integer.parseInt(request.getParameter("recipeIDToView"));
+				System.out.println("~~~~~Navitation Servlet:AddIngredient:  recipeID = " + recipeIDToView);
+				
+				// List<Ingredients> ingredientsToView = 
+				// ih.searchForIngredientsByRecipeID(recipeID);
+
+				request.setAttribute("recipeToEdit", recipeIDToView);
+				getServletContext().getRequestDispatcher("/add-ingredient.jsp").forward(request, response);
+			} catch (NumberFormatException e) {
+
+				// Go to the add-ingredient.jsp and pass the request and respone to the jsp.
+				getServletContext().getRequestDispatcher("/add-ingredient.jsp").forward(request, response);
+			}
 		}
+		// If the string act equals add do this.
+		else if (act.equals("Add")) {
+			// Go to the add-recipe.jsp and pass the request and respone to the jsp.
+			getServletContext().getRequestDispatcher("/add-recipe.jsp").forward(request, response);
+		}
+
 	}
 }
-

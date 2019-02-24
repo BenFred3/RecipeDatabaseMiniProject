@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Ingredients 
 {
 	// Initial values.
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="RECIPE_ID")
 	private RecipeInfo recipeID;
 	@Id
