@@ -25,7 +25,7 @@ public class Ingredients
 	private int ingredientID;
 	@Column(name="INGREDIENT_NAME")
 	private String ingredientName;
-	@Column(name="INGREDIENTQUANTITY")
+	@Column(name="INGREDIENT_QUANTITY")
 	private String ingredientQuantity;
 	@Column(name="INGREDIENT_SORT_NUMBER")
 	private int ingredientSortNumber;
