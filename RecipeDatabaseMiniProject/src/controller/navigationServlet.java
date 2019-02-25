@@ -46,6 +46,31 @@ public class navigationServlet extends HttpServlet {
 			// Return to the viewAllRecipesServlet to redisplay the page.
 			getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 		}
+		
+		// If the string act equals delete ingredient do this.
+				else if (act.equals("Delete Ingredient")) {
+					// Try and catch statement to avoid errors.
+					try {
+						// Get the ingredientID and pass it to the search function.
+						Integer ingredientID = Integer.parseInt(request.getParameter("ingredientID"));
+						Ingredients ingredientToDelete = ih.searchForIngredientsByID(ingredientID);
+
+						// Create an ingredientHelper and delete any ingredients associated with the
+						// recipe being deleted. (Potential functionality)
+						// GOES HERE
+						// <---------------------------------------------------------------------------------------------------
+
+						// then send the results to the delete function.
+						ih.deleteIngredients(ingredientToDelete);
+					} catch (NumberFormatException exception) {
+						// If the user didn't select anything print this to console.
+						System.out.println("Forgot to click a button.");
+					} finally {
+						// After the try-catch pass back the request and response to the servlet.
+						getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
+					}
+				}
+		
 		// If the string act equals delete do this.
 		else if (act.equals("Delete")) {
 			// Try and catch statement to avoid errors.
@@ -69,6 +94,27 @@ public class navigationServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 			}
 		}
+		
+		// If the string act equals edit do this.
+		else if (act.equals("Edit Ingredient")) {
+			try {
+				// Get the recipeid; create RecipeInfo object; populate RecipeInfo object
+				//Integer recipeIDToEdit = Integer.parseInt(request.getParameter("recipeIDToView"));
+				//RecipeInfo recipeToEdit = rh.searchForRecipeByID(recipeIDToEdit);
+				
+				//Get the IngredientID; create Ingredient Object; populate Ingredient object
+				Integer ingredientID = Integer.parseInt(request.getParameter("ingredientID")); 
+				Ingredients i = ih.searchForIngredientsByID(ingredientID); 
+				
+				request.setAttribute("ingredientToEdit", i);
+				getServletContext().getRequestDispatcher("/edit-ingredient.jsp").forward(request, response);
+			} catch (NumberFormatException e) {
+				// If the user didn't select anything return to the servlet.
+				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
+			}
+		}
+
+		
 		// If the string act equals edit do this.
 		else if (act.equals("Edit")) {
 			try {
@@ -90,7 +136,6 @@ public class navigationServlet extends HttpServlet {
 				// Get the id, pass it to the search function, then send the results to
 				// view-ingredients.jsp in the form of an attribute.
 				Integer recipeID = Integer.parseInt(request.getParameter("recipeID"));
-				System.out.println("NavigationServlet:ViewIngredients:recipeID = " + recipeID);
 				List<Ingredients> ingredientsToView = ih.searchForIngredientsByRecipeID(recipeID);
 				request.setAttribute("allIngredients", ingredientsToView);
 				getServletContext().getRequestDispatcher("/view-ingredients.jsp").forward(request, response);
@@ -99,16 +144,10 @@ public class navigationServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/viewAllRecipesServlet").forward(request, response);
 			}
 		} else if (act.equals("Add Ingredient")) {
-			System.out.println("~~~~~~NavigationServlet:AddIngredient");
 			try {
 				// Get the recipeId
-				System.out.println("~~~~~NavigtionServlet:  Add Ingredient:  getting recipeID");
 				Integer recipeIDToView = Integer.parseInt(request.getParameter("recipeIDToView"));
-				System.out.println("~~~~~Navitation Servlet:AddIngredient:  recipeID = " + recipeIDToView);
 				
-				// List<Ingredients> ingredientsToView = 
-				// ih.searchForIngredientsByRecipeID(recipeID);
-
 				request.setAttribute("recipeToEdit", recipeIDToView);
 				getServletContext().getRequestDispatcher("/add-ingredient.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
