@@ -39,8 +39,8 @@
 			<!-- List out the ingredients for the user and allow them to select an item. -->
 			<c:forEach items="${requestScope.allIngredients}" var="currentIngredient">
 				<tr><td><input type="radio" name="ingredientID" value="${currentIngredient.ingredientID}">Ingredient ID: ${currentIngredient.ingredientID}</td></tr>
-			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Name: ${currentIngredient.ingredientName}</td></tr>
 			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Quantity: ${currentIngredient.ingredientQuantity}</td></tr>
+			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Name: ${currentIngredient.ingredientName}</td></tr>
 			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Sort Number: ${currentIngredient.ingredientSortNumber}</td></tr>
 			</c:forEach>
 		</table>
@@ -49,7 +49,7 @@
 		<input type = "submit" value = "Edit Ingredient" name = "doThisToRecipe">
 		<input type = "submit" value = "Delete Ingredient" name = "doThisToRecipe">
 		<input type = "submit" value = "Add Ingredient" name = "doThisToRecipe">
-		<input name="recipeIDToView" value="${recipeIDToView}"> 
+		<input type = "hidden" name="recipeIDToView" value="${recipeIDToView}"> 
 		
 	</form>
 	<br />
