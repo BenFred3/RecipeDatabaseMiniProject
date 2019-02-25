@@ -40,13 +40,14 @@ public class IngredientsHelper
 		// Create a EntityManager, start a transaction, pass a SQL command.
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Ingredients> typedQuery = em.createQuery("SELECT li from Ingredients li where li.recipeID = :selectedRecipeID and li.ingredientID = :selectedIngrdientID " 
+		TypedQuery<Ingredients> typedQuery = em.createQuery("SELECT li from Ingredients li where li.ingredientID = :selectedIngredientID " , Ingredients.class); 
+		//TypedQuery<Ingredients> typedQuery = em.createQuery("SELECT li from Ingredients li where li.recipeID = :selectedRecipeID and li.ingredientID = :selectedIngrdientID " 
 //		+ " and li.ingredientName = :selectedIngredientName" and li.recipeType = :selectedRecipeType and li.dateAdded = :selectedDateAdded and li.calories = :selectedCalories and li.prepTime = "
 //		+ ":selectedPrepTime"
-				, Ingredients.class);
+
 				
 		// Substitute parameter with actual data from the toDelete item.
-		typedQuery.setParameter("selectedRecipeID", toDelete.getRecipeID());
+		//typedQuery.setParameter("selectedRecipeID", toDelete.getRecipeID());
 		typedQuery.setParameter("selectedIngredientID", toDelete.getIngredientID());
 		//typedQuery.setParameter("selectedRecipeName", toDelete.getRecipeName());
 		//typedQuery.setParameter("selectedRecipeType", toDelete.getRecipeType());

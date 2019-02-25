@@ -42,7 +42,6 @@
 			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Name: ${currentIngredient.ingredientName}</td></tr>
 			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Quantity: ${currentIngredient.ingredientQuantity}</td></tr>
 			 	<tr><td>&nbsp;&nbsp;&nbsp;&nbsp; Ingredient Sort Number: ${currentIngredient.ingredientSortNumber}</td></tr>
-			 	<input type="hidden" name="recipeIDToView" value="${currentIngredient.recipeID.recipeID}">
 			</c:forEach>
 		</table>
 		<br />
@@ -50,6 +49,8 @@
 		<input type = "submit" value = "Edit Ingredient" name = "doThisToRecipe">
 		<input type = "submit" value = "Delete Ingredient" name = "doThisToRecipe">
 		<input type = "submit" value = "Add Ingredient" name = "doThisToRecipe">
+		<input name="recipeIDToView" value="${recipeIDToView}"> 
+		
 	</form>
 	<br />
 	<!-- Links to go to the ingredients or back to the homepage -->

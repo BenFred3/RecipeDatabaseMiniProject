@@ -39,7 +39,7 @@
 		<br>
 		Ingrdient Name: <input type ="text" name = "IngredientName" size= "40" value="${ingredientToEdit.ingredientName}">
 		<br>
-		Ingredient Sort Order: <input type = "text" name = "ingredientSortNumber" value="${ingredientToEdit.ingredientSortNumber}" readonly>
+		Ingredient Sort Order: <input type = "text" name = "ingredientSortNumber" value="${ingredientToEdit.ingredientSortNumber}" >
 		<br>
 		<input type = "hidden" name = "ingredientID" value="${ingredientToEdit.ingredientID}">
 		<br>
