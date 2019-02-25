@@ -40,10 +40,16 @@ public class addIngredientServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Create  variables to hold all the requests.
 		
+		System.out.println("AddIngredientServlet");
 		Integer recipeToAdd = Integer.parseInt(request.getParameter("recipeIDToAdd"));
+		System.out.println("AddIngredientServlet: recipeToAdd" + recipeToAdd);
 		String ingredientQuantity = request.getParameter("ingredientQuantity");
+		System.out.println("AddIngredientServlet: quantity" + ingredientQuantity);
 		String ingredientName = request.getParameter("ingredientName");
+		System.out.println("AddIngredientServlet: name" + ingredientName);
 		Integer ingredientSortOrder = Integer.parseInt(request.getParameter("ingredientSortOrder"));
+		System.out.println("AddIngredientServlet: sort" + ingredientSortOrder);
+		
 		
 		RecipeHelper rh = new RecipeHelper();
 		RecipeInfo ri = rh.searchForRecipeByID(recipeToAdd);  

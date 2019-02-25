@@ -39,8 +39,6 @@ public class navigationServlet extends HttpServlet {
 		// Get user's response parameter and set it to a string.
 		String act = request.getParameter("doThisToRecipe");
 
-		System.out.println("~~~~~NavigationServlet:  act = " + act);
-
 		// If no button has been selected do this.
 		if (act == null) {
 			// Return to the viewAllRecipesServlet to redisplay the page.
@@ -53,8 +51,10 @@ public class navigationServlet extends HttpServlet {
 					try {
 						// Get the ingredientID and pass it to the search function.
 						Integer ingredientID = Integer.parseInt(request.getParameter("ingredientID"));
+						System.out.println("~~~~~navigationServlet:DeleteIngredient:  ingredientId = " + ingredientID);
 						Ingredients ingredientToDelete = ih.searchForIngredientsByID(ingredientID);
 
+						
 						// Create an ingredientHelper and delete any ingredients associated with the
 						// recipe being deleted. (Potential functionality)
 						// GOES HERE
@@ -133,11 +133,15 @@ public class navigationServlet extends HttpServlet {
 		else if (act.equals("View Ingredients")) {
 
 			try {
+				System.out.println("~~~~~NavigationServlet:ViewIngredients");
 				// Get the id, pass it to the search function, then send the results to
 				// view-ingredients.jsp in the form of an attribute.
 				Integer recipeID = Integer.parseInt(request.getParameter("recipeID"));
+				System.out.println("~~~~~NavigationServlet:ViewIngredient: recipeID = " + recipeID);
+				
 				List<Ingredients> ingredientsToView = ih.searchForIngredientsByRecipeID(recipeID);
 				request.setAttribute("allIngredients", ingredientsToView);
+				request.setAttribute("recipeIDToView",  recipeID);
 				getServletContext().getRequestDispatcher("/view-ingredients.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 				// If the user didn't select anything return to the servlet.
@@ -145,8 +149,10 @@ public class navigationServlet extends HttpServlet {
 			}
 		} else if (act.equals("Add Ingredient")) {
 			try {
+				System.out.println("~~~~~NavigationServlet:AddIngredient");
 				// Get the recipeId
 				Integer recipeIDToView = Integer.parseInt(request.getParameter("recipeIDToView"));
+				System.out.println("~~~~~NavigationServlet:AddIngredient: recipeID = " + recipeIDToView);
 				
 				request.setAttribute("recipeToEdit", recipeIDToView);
 				getServletContext().getRequestDispatcher("/add-ingredient.jsp").forward(request, response);
