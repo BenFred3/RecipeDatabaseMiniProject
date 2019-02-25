@@ -87,7 +87,7 @@ public class IngredientsHelper
 		// Create an EntityManager, start a transaction, find an ID from the int given, close the transaction, return the found information.
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Ingredients> typedQuery = em.createQuery("SELECT li FROM Ingredients li where li.recipeID = :selectedRecipeID ", Ingredients.class);
+		TypedQuery<Ingredients> typedQuery = em.createQuery("SELECT li FROM Ingredients li where li.recipeID = :selectedRecipeID order by li.ingredientSortNumber", Ingredients.class);
 
 		// Substitute parameter with actual data from the toDelete item.
 		typedQuery.setParameter("selectedRecipeID", ri);

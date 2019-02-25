@@ -139,9 +139,12 @@ public class navigationServlet extends HttpServlet {
 				Integer recipeID = Integer.parseInt(request.getParameter("recipeID"));
 				System.out.println("~~~~~NavigationServlet:ViewIngredient: recipeID = " + recipeID);
 				
+				RecipeInfo ri = rh.searchForRecipeByID(recipeID); 
+				
 				List<Ingredients> ingredientsToView = ih.searchForIngredientsByRecipeID(recipeID);
 				request.setAttribute("allIngredients", ingredientsToView);
 				request.setAttribute("recipeIDToView",  recipeID);
+				request.setAttribute("recipeName", ri.getRecipeName());
 				getServletContext().getRequestDispatcher("/view-ingredients.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 				// If the user didn't select anything return to the servlet.
@@ -155,6 +158,9 @@ public class navigationServlet extends HttpServlet {
 				System.out.println("~~~~~NavigationServlet:AddIngredient: recipeID = " + recipeIDToView);
 				
 				request.setAttribute("recipeToEdit", recipeIDToView);
+				RecipeInfo ri = rh.searchForRecipeByID(recipeIDToView); 
+				request.setAttribute("recipeName", ri.getRecipeName());
+				
 				getServletContext().getRequestDispatcher("/add-ingredient.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 
