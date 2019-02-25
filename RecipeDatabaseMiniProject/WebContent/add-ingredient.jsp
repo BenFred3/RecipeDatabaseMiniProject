@@ -36,9 +36,9 @@
 	<!-- Create a form with all the instance variables from RecipeInfo to allow the user to add to the database. -->
 	<form action = "addIngredientServlet" method="post">
 		<input  type = hidden name="recipeIDToAdd" value="${recipeToEdit}">
-		Ingredient Name: <input type ="text" name = "ingredientName">
-		<br>
 		Ingredient Quantity: <input type = "text" name = "ingredientQuantity">
+		<br>
+		Ingredient Name: <input type ="text" name = "ingredientName">
 		<br>
 		Ingredient Sort Order: <input type = "text" name = "ingredientSortOrder">
 		<br>
