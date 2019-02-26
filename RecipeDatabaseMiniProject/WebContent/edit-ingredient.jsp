@@ -37,7 +37,7 @@
 	<form action = "editIngredientServlet" method="post">
 		Ingredient Quantity: <input type = "text" name = "ingredientQuantity" value="${ingredientToEdit.ingredientQuantity}">
 		<br>
-		Ingrdient Name: <input type ="text" name = "IngredientName" size= "40" value="${ingredientToEdit.ingredientName}">
+		Ingredient Name: <input type ="text" name = "IngredientName" size= "40" value="${ingredientToEdit.ingredientName}">
 		<br>
 		Ingredient Sort Order: <input type = "text" name = "ingredientSortNumber" value="${ingredientToEdit.ingredientSortNumber}" >
 		<br>

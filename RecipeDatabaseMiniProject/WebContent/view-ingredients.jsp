@@ -35,7 +35,7 @@
 <body>
 	<!-- Create a form and table to allow the user to edit the information in the database. -->
 	<form method = "post" action = "navigationServlet">
-	    Recipe Name:  <input type = "text" value = "${recipeName }" readonly>
+	    Recipe Name:  <input type = "text" size = "50" value = "${recipeName }" readonly>
 		<table>
 			<!-- List out the ingredients for the user and allow them to select an item. -->
 			<c:forEach items="${requestScope.allIngredients}" var="currentIngredient">
